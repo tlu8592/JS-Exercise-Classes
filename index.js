@@ -47,11 +47,9 @@ class Airplane {
       this.age = age;
       this.stomach = [];
     }
-
     stomachContents() {
       return this.stomach;
     }
-
     eat(someFood) {
       if (this.stomach.length >= 10) {
         return "You are full. Here is what you ate: " + this.stomachContents();
@@ -59,12 +57,10 @@ class Airplane {
       this.stomach.push(someFood);
       return "in stomach: " + someFood;
     }
-
     poop() {
       this.stomach = [];
       return "All gone!";
     }
-
     toString() {
       return `${this.name}, ${this.age}`;
     }
@@ -83,8 +79,8 @@ console.log(person1.eat("bacon"));
 console.log(person1.eat("chocolate"));
 console.log(person1.eat("ramen"));
 console.log(person1.eat("pie"));
-// console.log(person1.poop());
-// console.log(person1.toString()); 
+console.log(person1.poop());
+console.log(person1.toString()); 
 
   
   /*
@@ -102,9 +98,32 @@ console.log(person1.eat("pie"));
   */
   
  class Car {
-    
+    constructor(model, milesPerGallon) {
+      this.model = model;
+      this.milesPerGallon = milesPerGallon;
+      this.tank = 0;
+      this.odometer = 0;
+    }
+    fill(gallons) {
+      this.tank += gallons * this.milesPerGallon;
+      if (this.tank === 390) {
+        return "FULL";
+      }
+    }
+    drive(distance) {
+      this.odometer += distance;
+      this.tank -= 1
+      if (this.tank === 0) {
+        return `I ran out of fuel at ${this.odometer} miles.`;
+      }
+      return `${this.odometer}, ${this.tank}`;
+    }
   }
-  
+
+  const car1 = new Car("V12 Vanquish", 30);
+
+  console.log(car1.fill(13))
+  console.log(car1.drive(390))
   /*
     TASK 3
       - Write a Lambdasian class.
@@ -118,8 +137,23 @@ console.log(person1.eat("pie"));
           + {name} and {location} of course come from the instance's own properties.
   */
  class Lambdasian {
-    
-  }
+   constructor(attr) {
+     this.name = attr.name;
+     this.age = attr.age;
+     this.location = attr.location;
+   }
+   speak() {
+     return `Hello my name is ${this.name}, I am from ${this.location}.`;
+   }
+}
+
+  const tony = new Lambdasian({
+    name: "Tony",
+    age: 28,
+    location: "Virginia Beach"
+  })
+
+  console.log(tony.speak());
   
   /*
     TASK 4
