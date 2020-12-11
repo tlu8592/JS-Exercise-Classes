@@ -105,25 +105,22 @@ console.log(person1.toString());
       this.odometer = 0;
     }
     fill(gallons) {
-      this.tank += gallons * this.milesPerGallon;
-      if (this.tank === 390) {
-        return "FULL";
-      }
+      this.tank += gallons;
     }
     drive(distance) {
-      this.odometer += distance;
-      this.tank -= 1
-      if (this.tank === 0) {
+      const potentialGallons = distance / this.milesPerGallon;
+      if (potentialGallons > this.tank) {
+        this.odometer += this.milesPerGallon * this.tank;
+        this.tank = 0;
         return `I ran out of fuel at ${this.odometer} miles.`;
+      } else {
+        this.odometer += distance;
+        this.tank -= potentialGallons;
       }
-      return `${this.odometer}, ${this.tank}`;
     }
   }
 
-  const car1 = new Car("V12 Vanquish", 30);
 
-  console.log(car1.fill(13))
-  console.log(car1.drive(390))
   /*
     TASK 3
       - Write a Lambdasian class.
