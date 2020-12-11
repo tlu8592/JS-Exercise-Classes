@@ -189,7 +189,8 @@ console.log(person1.toString());
     age: 34,
     location: "Smithfield",
     specialty: "Computer Science",
-    favLanguage: ["JavaScript", "C#", "React", "Python", "Java"]
+    favLanguage: ["JavaScript", "C#", "React", "Python", "Java"],
+    catchPhrase: "Don't be afraid to make mistakes!"
   });
 
   console.log(bobby.demo("Python"));
@@ -254,9 +255,33 @@ console.log(person1.toString());
           + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
           + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
   */
- class ProjectManager {
-     
+ class ProjectManager extends Instructor {
+  constructor(projMgrAttr) {
+    super(projMgrAttr);
+    this.gradClassName = projMgrAttr.gradClassName;
+    this.favInstructor = projMgrAttr.favInstructor;
+  }
+  standUp(channel) {
+    return `${this.name} announces to ${channel}, @${channel} standy times!`
+  }
+  debugsCode(student, subject) {
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
  }
+
+ const stanley = new ProjectManager({
+  name: "Stanley",
+  age: 35,
+  location: "Fort Wayne",
+  specialty: "Data Science",
+  favLanguage: ["Python", "JavaScript", "C++", "SQL"],
+  catchPhrase: "Embrace the struggle!",
+  gradClassName: "DS3",
+  favInstructor: "Dexter"
+ });
+
+ console.log(stanley.standUp("ls1900323_full_time"));
+ console.log(stanley.debugsCode(tony, "JavaScript"));
   /*
     STRETCH PROBLEM (no tests!)
       - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
